@@ -14,6 +14,7 @@ set-env:
 	$(GO) env -w GO111MODULE=on
 	$(GO) env -w GOPROXY=http://mirrors.aliyun.com/goproxy/
 	$(GO) env -w GONOSUMDB=\*
+	$(GO) env -w GOPRIVATE=code.aliyun.com
 
 compile:build
 
