@@ -14,3 +14,9 @@ curl -o Makefile -L "https://raw.githubusercontent.com/day253/go-template/master
 pip3 install pre-commit
 pre-commit install --allow-missing-config
 ```
+
+fix WARNING
+
+```
+pre-commit autoupdate
+```
