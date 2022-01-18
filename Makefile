@@ -30,7 +30,7 @@ build: set-env
 test: test-case
 
 test-case: set-env
-	$(GO) test -v
+	$(GO) test -v ./...
 
 package: package-bin
 
