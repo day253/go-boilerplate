@@ -3,9 +3,6 @@ OUTDIR  := $(HOMEDIR)/output
 GO      := go
 GOPATH  := $(shell $(GO) env GOPATH)
 
-ALIYUN_GOPROXY := https://mirrors.aliyun.com/goproxy/
-QCLOUD_GOPROXY := https://mirrors.cloud.tencent.com/go/
-
 all: prepare compile test package
 
 prepare: prepare-dep
@@ -17,7 +14,7 @@ prepare-dep:
 set-env:
 	$(GO) env -w GO111MODULE=on
 	$(GO) env -w CGO_ENABLED=1
-	$(GO) env -w GOPROXY=$(QCLOUD_GOPROXY)
+	$(GO) env -w GOPROXY=https://mirrors.aliyun.com/goproxy/
 	$(GO) env -w GONOSUMDB=\*
 	$(GO) env -w GOPRIVATE=code.aliyun.com
 
