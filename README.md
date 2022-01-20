@@ -7,17 +7,13 @@
 #### IgnoreList
 
 ```bash
-curl \
-    -o .gitignore \
-    -L "https://github.com/github/gitignore/raw/main/Go.gitignore"
+curl -o .gitignore -L "https://github.com/github/gitignore/raw/main/Go.gitignore"
 ```
 
 #### AllowList
 
 ```bash
-curl \
-    -o .gitignore \
-    -L "https://github.com/github/gitignore/raw/main/community/Golang/Go.AllowList.gitignore"
+curl -o .gitignore -L "https://github.com/github/gitignore/raw/main/community/Golang/Go.AllowList.gitignore"
 ```
 
 ### init makefile
@@ -25,9 +21,7 @@ curl \
 ```Makefile
 include Makefile.mk
 Makefile.mk:
-	curl \
-		-o Makefile.mk \
-		-L "https://github.com/day253/go-template/raw/master/Makefile.mk"
+	curl -o Makefile.mk -L "https://github.com/day253/go-template/raw/master/Makefile.mk"
 ```
 
 ### init pre-commit hook
