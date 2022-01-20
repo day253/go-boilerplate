@@ -10,6 +10,7 @@ prepare: prepare-dep
 prepare-dep:
 	git config --global http.sslVerify false
 	git config --global url.git@code.aliyun.com:.insteadOf https://code.aliyun.com/
+	git submodule update --init --recursive
 
 set-env:
 	$(GO) env -w GO111MODULE=on
