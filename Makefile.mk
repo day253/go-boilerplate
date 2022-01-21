@@ -45,7 +45,7 @@ compile: build
 build: set-env
 	$(GO) mod tidy -v
 	#$(GO) mod vendor
-	#$(GO) build
+	$(GO) build -o $(OUTDIR)/main $(HOMEDIR)/main.go
 
 test: test-case
 
