@@ -5,10 +5,10 @@ GOPATH := $(shell $(GO) env GOPATH)
 
 GOBIN := $(GOPATH)/bin
 
-GO_MAJOR_VERSION = $(shell $(GO) version | cut -c 14- | cut -d' ' -f1 | cut -d'.' -f1)
+#GO_MAJOR_VERSION = $(shell $(GO) version | cut -c 14- | cut -d' ' -f1 | cut -d'.' -f1)
 GO_MINOR_VERSION = $(shell $(GO) version | cut -c 14- | cut -d' ' -f1 | cut -d'.' -f2)
 
-MINIMUM_SUPPORTED_GO_MAJOR_VERSION = 1
+#MINIMUM_SUPPORTED_GO_MAJOR_VERSION = 1
 MINIMUM_SUPPORTED_GO_MINOR_VERSION = 16
 
 all: prepare compile test check package
