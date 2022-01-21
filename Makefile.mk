@@ -56,10 +56,12 @@ test-case: set-env
 check: staticcheck gocritic
 
 staticcheck:
+	# https://staticcheck.io/docs/getting-started/
 	$(GOBIN)/staticcheck ./...
 	#$(go) vet ./...
 
 gocritic:
+	# https://github.com/go-critic/go-critic
 	$(GOBIN)/gocritic check ./...
 
 package: package-bin
