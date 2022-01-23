@@ -1,4 +1,4 @@
-# go-makefile
+# go-boilerplate
 
 ## Installation
 
