@@ -1,20 +1,14 @@
 package main
 
-import (
-	"fmt"
-	"net/http"
-)
-
-func indexHandler(w http.ResponseWriter, r *http.Request) {
-	_, err := fmt.Fprintf(w, "hello world")
-	if err != nil {
-		return
-	}
-}
+import "github.com/gin-gonic/gin"
 
 func main() {
-	http.HandleFunc("/", indexHandler)
-	if err := http.ListenAndServe(":8000", nil); err != nil {
+	r := gin.Default()
+	r.GET("/", func(context *gin.Context) {
+		context.String(200, "ok")
+	})
+	err := r.Run(":7111")
+	if err != nil {
 		return
 	}
 }
