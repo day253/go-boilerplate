@@ -60,6 +60,9 @@ test-case: set-env
 	#$(GO) test -v ./...
 	$(GO) test -tags=unit -timeout 30s -short -v ./...
 
+.PHONY: bench
+bench:
+
 .PHONY: check
 check: staticcheck gocritic
 
