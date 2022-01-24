@@ -62,6 +62,7 @@ test-case: set-env
 
 .PHONY: bench
 bench:
+	$(GO) test -v -bench=. -benchtime=10s ./...
 
 .PHONY: check
 check: staticcheck gocritic
