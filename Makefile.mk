@@ -15,18 +15,48 @@ MINIMUM_SUPPORTED_GO_MINOR_VERSION = 16
 all: prepare compile test check package
 
 .PHONY: prepare
-prepare: prepare-dep go-tools
+prepare: prepare-dep
 
 prepare-dep:
 	git config --global http.sslVerify false
 	git config --global url.git@code.aliyun.com:.insteadOf https://code.aliyun.com/
 	git submodule update --init --recursive
 
-go-tools:
+set-env:
+	$(GO) env -w GO111MODULE=on
+	$(GO) env -w CGO_ENABLED=1
+	$(GO) env -w GOPROXY=https://goproxy.io,direct
+	$(GO) env -w GONOSUMDB=\*
+	$(GO) env -w GOPRIVATE=code.aliyun.com
+
+.PHONY: compile
+compile: pre-build build
+
+pre-build: set-env
+	$(GO) mod tidy -v
+	#$(GO) mod vendor
+
+build: set-env
+	$(GO) build -o $(OUTDIR)/main $(HOMEDIR)/cmd/server/main.go
+
+.PHONY: test
+test: test-case
+
+test-case: set-env
+	$(GO) test -tags=unit -timeout 30s -short -v ./...
+
+.PHONY: bench
+bench:
+	$(GO) test -v -bench=. -benchtime=10s ./...
+
+.PHONY: check
+check: check-tools staticcheck gocritic
+
+check-tools:
 	@for repo in \
 		"honnef.co/go/tools/cmd/staticcheck" \
-		"golang.org/x/tools/cmd/goimports" \
 		"github.com/go-critic/go-critic/cmd/gocritic" \
+		"golang.org/x/tools/cmd/goimports" \
 		"github.com/fzipp/gocyclo/cmd/gocyclo" \
 		"github.com/golangci/golangci-lint/cmd/golangci-lint" \
 		"golang.org/x/lint/golint" \
@@ -38,39 +68,9 @@ go-tools:
 		fi \
 	done
 
-set-env:
-	$(GO) env -w GO111MODULE=on
-	$(GO) env -w CGO_ENABLED=1
-	$(GO) env -w GOPROXY=https://goproxy.io,direct
-	$(GO) env -w GONOSUMDB=\*
-	$(GO) env -w GOPRIVATE=code.aliyun.com
-
-.PHONY: compile
-compile: build
-
-build: set-env
-	$(GO) mod tidy -v
-	#$(GO) mod vendor
-	$(GO) build -o $(OUTDIR)/main $(HOMEDIR)/cmd/server/main.go
-
-.PHONY: test
-test: test-case
-
-test-case: set-env
-	#$(GO) test -v ./...
-	$(GO) test -tags=unit -timeout 30s -short -v ./...
-
-.PHONY: bench
-bench:
-	$(GO) test -v -bench=. -benchtime=10s ./...
-
-.PHONY: check
-check: staticcheck gocritic
-
 staticcheck:
 	# https://staticcheck.io/docs/getting-started/
 	$(GOBIN)/staticcheck ./...
-	#$(go) vet ./...
 
 gocritic:
 	# https://github.com/go-critic/go-critic
