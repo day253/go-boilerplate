@@ -36,8 +36,8 @@ pre-build: set-env
 	$(GO) mod tidy -v
 	#$(GO) mod vendor
 
-build: set-env
-	$(GO) build -o $(OUTDIR)/main $(HOMEDIR)/cmd/server/main.go
+build-default: set-env
+	echo "build-default"
 
 .PHONY: test
 test: test-case
@@ -50,7 +50,7 @@ bench:
 	$(GO) test -v -bench=. -benchtime=10s ./...
 
 .PHONY: check
-check: check-tools staticcheck gocritic
+check: check-tools staticcheck gocritic goimports gocyclo golangci-lint
 
 check-tools:
 	@for repo in \
@@ -59,7 +59,6 @@ check-tools:
 		"golang.org/x/tools/cmd/goimports" \
 		"github.com/fzipp/gocyclo/cmd/gocyclo" \
 		"github.com/golangci/golangci-lint/cmd/golangci-lint" \
-		"golang.org/x/lint/golint" \
 	; do \
 		if [ $(GO_MINOR_VERSION) -ge $(MINIMUM_SUPPORTED_GO_MINOR_VERSION) ]; then \
 			$(GO) install -v $$repo@latest; \
@@ -69,12 +68,19 @@ check-tools:
 	done
 
 staticcheck:
-	# https://staticcheck.io/docs/getting-started/
 	$(GOBIN)/staticcheck ./...
 
 gocritic:
-	# https://github.com/go-critic/go-critic
 	$(GOBIN)/gocritic check ./...
+
+goimports:
+	$(GOBIN)/goimports -l -w .
+
+gocyclo:
+	$(GOBIN)/gocyclo .
+
+golangci-lint:
+	$(GOBIN)/golangci-lint run ./...
 
 .PHONY: package
 package: package-bin
@@ -85,3 +91,10 @@ package-bin:
 .PHONY: clean
 clean:
 	rm -rf $(OUTDIR)
+
+# Overrides
+# ------------------------------------------------------------------------------
+#
+# https://stackoverflow.com/a/49804748
+%: %-default
+	@ true
