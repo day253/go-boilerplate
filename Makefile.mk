@@ -1,5 +1,5 @@
 HOMEDIR := $(shell pwd)
-OUTDIR := $(HOMEDIR)/output
+OUTDIR := $(HOMEDIR)/dist/dist
 BINDIR := $(OUTDIR)/bin
 GO := go
 GOPATH := $(shell $(GO) env GOPATH)
