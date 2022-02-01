@@ -1,14 +1,16 @@
 package main
 
-import "github.com/gin-gonic/gin"
+import (
+	"log"
+
+	api "github.com/cloudwego/kitex-examples/hello/kitex_gen/api/hello"
+)
 
 func main() {
-	r := gin.Default()
-	r.GET("/", func(context *gin.Context) {
-		context.String(200, "ok")
-	})
-	err := r.Run(":7111")
+	svr := api.NewServer(new(HelloImpl))
+
+	err := svr.Run()
 	if err != nil {
-		return
+		log.Println(err.Error())
 	}
 }
