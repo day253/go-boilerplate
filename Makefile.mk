@@ -1,5 +1,6 @@
 HOMEDIR := $(shell pwd)
 OUTDIR := $(HOMEDIR)/output
+BINDIR := $(OUTDIR)/bin
 GO := go
 GOPATH := $(shell $(GO) env GOPATH)
 
@@ -85,7 +86,7 @@ golangci-lint:
 .PHONY: package
 package: package-bin
 
-package-bin:
+package-bin-default:
 	mkdir -p $(OUTDIR)
 
 .PHONY: clean

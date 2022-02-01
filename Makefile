@@ -1,6 +1,10 @@
 build: set-env
-	$(GO) build -o $(OUTDIR)/client $(HOMEDIR)/cmd/client/*.go
-	$(GO) build -o $(OUTDIR)/server $(HOMEDIR)/cmd/server/*.go
+	$(GO) build -o $(BINDIR)/client $(HOMEDIR)/cmd/client/*.go
+	$(GO) build -o $(BINDIR)/server $(HOMEDIR)/cmd/server/*.go
+
+package-bin:
+	mkdir -p $(OUTDIR)
+	cp -r dist/* $(OUTDIR)
 
 include Makefile.mk
 Makefile.mk:
