@@ -42,7 +42,7 @@ reload)
         RELOAD_PARA=$*
         echo -e "running:      [${PROC_NAME}] ${INTERFACE} ${RELOAD_PARA}"
         if [ "${RELOAD_PARA}" == "-t connection" ]; then
-            python ${BIN_DIR}/connection.py <${BIN_DIR}/../beejson/connection.json >${CNF_DIR}/connection.conf
+            # python ${BIN_DIR}/connection.py <${BIN_DIR}/../beejson/connection.json >${CNF_DIR}/connection.conf
         else
             ${INTERFACE} ${RELOAD_PARA}
         fi
