@@ -17,3 +17,5 @@ wget -O Makefile "https://raw.githubusercontent.com/day253/go-boilerplate/master
 ## reference
 
 [Standard Go Project Layout](https://github.com/golang-standards/project-layout)
+
+[control.sh from baidu](https://github.com/baidu/ARK/tree/master/bin)
