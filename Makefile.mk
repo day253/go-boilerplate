@@ -12,7 +12,7 @@ GO_MINOR_VERSION = $(shell $(GO) version | cut -c 14- | cut -d' ' -f1 | cut -d'.
 MINIMUM_SUPPORTED_GO_MINOR_VERSION = 16
 
 .PHONY: all
-all: prepare compile test check package
+all: prepare compile test package
 
 .PHONY: prepare
 prepare: prepare-dep
@@ -93,8 +93,6 @@ clean:
 	rm -rf $(OUTDIR)
 
 # Overrides
-# ------------------------------------------------------------------------------
-#
 # https://stackoverflow.com/a/49804748
 %: %-default
 	@ true
