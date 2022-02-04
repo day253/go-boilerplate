@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"log"
 
 	"github.com/cloudwego/kitex-examples/hello/kitex_gen/api"
 )
@@ -13,5 +14,6 @@ type HelloImpl struct{}
 func (s *HelloImpl) Echo(ctx context.Context, req *api.Request) (resp *api.Response, err error) {
 	// TODO: Your code here...
 	resp = &api.Response{Message: req.Message}
+	log.Println(resp)
 	return
 }

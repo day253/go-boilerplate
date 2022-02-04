@@ -1,6 +1,7 @@
 build: set-env
 	$(GO) build -o $(BINDIR)/client $(HOMEDIR)/cmd/client/*.go
 	$(GO) build -o $(BINDIR)/server $(HOMEDIR)/cmd/server/*.go
+	$(GO) build -o $(BINDIR)/statsviz $(HOMEDIR)/cmd/statsviz/*.go
 
 package-bin:
 	mkdir -p $(OUTDIR)
