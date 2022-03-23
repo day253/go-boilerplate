@@ -475,6 +475,9 @@ function start_cmd() {
         cd ${STA_DIR} && rm -rf ./svcontrol
     fi
     ########
+    # 决定TOP为PWD
+    # cd ${TOP_DIR}
+    # 决定BIN为PWD
     cd ${BIN_DIR}
     ${START_COMMAND} 1>${LOG_DIR}/${CONTROL_LOG} 2>&1 </dev/null &
     cd ${TOP_DIR}
