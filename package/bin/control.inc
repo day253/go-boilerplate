@@ -567,7 +567,7 @@ function start_check() {
 
 ####检查guardian是否启动
 function check_guardian {
-    GUARDIAN_PID=$(ps x | grep ${BIN_DIR}/${PROC_NAME} | grep -v "supervise" | grep -v "vim" | grep -v "cat" | grep -v grep | awk '{print $1}')
+    GUARDIAN_PID=$(ps x | grep ${BIN_DIR}/${PROC_NAME} | grep -v "supervise " | grep -v "vim " | grep -v "cat " | grep -v "grep " | awk '{print $1}')
     if [ "x${GUARDIAN_PID}" != "x" ]; then
         for guardian_pid in ${GUARDIAN_PID}; do
             check_proc_exist "${guardian_pid}" "${TOP_DIR}"
