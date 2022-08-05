@@ -21,6 +21,8 @@ prepare: prepare-dep
 prepare-dep:
 	git config --global http.sslVerify false
 	git config --global url.git@code.aliyun.com:.insteadOf https://code.aliyun.com/
+	git config --global url.git@code.ishumei.com:.insteadOf https://code.ishumei.com/
+	git config --global url.git@code-int.ishumei.com:.insteadOf https://code-int.ishumei.com/
 	git submodule update --init --recursive
 
 set-env:
@@ -28,7 +30,7 @@ set-env:
 	$(GO) env -w CGO_ENABLED=1
 	$(GO) env -w GOPROXY=https://proxy.golang.com.cn,direct
 	$(GO) env -w GONOSUMDB=\*
-	$(GO) env -w GOPRIVATE=code.aliyun.com
+	$(GO) env -w GOPRIVATE=code.aliyun.com,code.ishumei.com,code-int.ishumei.com
 
 .PHONY: compile
 compile: pre-build build
