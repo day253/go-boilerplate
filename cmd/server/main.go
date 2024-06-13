@@ -16,12 +16,9 @@ var (
 	port = flag.Int("port", 8888, "port")
 )
 
-// HelloImpl implements the last service interface defined in the IDL.
-type HelloImpl struct{}
+type helloImpl struct{}
 
-// Echo implements the HelloImpl interface.
-func (s *HelloImpl) Echo(ctx context.Context, req *api.Request) (resp *api.Response, err error) {
-	// TODO: Your code here...
+func (s *helloImpl) Echo(ctx context.Context, req *api.Request) (resp *api.Response, err error) {
 	resp = &api.Response{Message: req.Message}
 	log.Println(resp)
 	return
@@ -30,8 +27,7 @@ func (s *HelloImpl) Echo(ctx context.Context, req *api.Request) (resp *api.Respo
 func main() {
 	flag.Parse()
 	addr, _ := net.ResolveTCPAddr("tcp", fmt.Sprintf(":%d", *port))
-	svr := hello.NewServer(new(HelloImpl), server.WithServiceAddr(addr))
-
+	svr := hello.NewServer(new(helloImpl), server.WithServiceAddr(addr))
 	err := svr.Run()
 	if err != nil {
 		log.Println(err.Error())

@@ -13,7 +13,7 @@ import (
 )
 
 var (
-	qps = flag.Int("qps", 5000, "qps")
+	qps = flag.Int("qps", 50000, "qps")
 )
 
 func main() {
