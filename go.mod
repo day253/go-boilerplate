@@ -3,13 +3,14 @@ module github.com/day253/go-boilerplate
 go 1.19
 
 require (
-	github.com/arl/statsviz v0.6.0
 	github.com/cloudwego/kitex v0.10.0
 	github.com/cloudwego/kitex-examples v0.1.0
+	go.uber.org/ratelimit v0.3.1
 )
 
 require (
 	github.com/apache/thrift v0.13.0 // indirect
+	github.com/benbjohnson/clock v1.3.0 // indirect
 	github.com/bytedance/gopkg v0.0.0-20240514070511-01b2cbcf35e1 // indirect
 	github.com/bytedance/sonic v1.11.8 // indirect
 	github.com/bytedance/sonic/loader v0.1.1 // indirect
@@ -27,7 +28,6 @@ require (
 	github.com/fatih/structtag v1.2.0 // indirect
 	github.com/golang/protobuf v1.5.2 // indirect
 	github.com/google/pprof v0.0.0-20220608213341-c488b8fa1db3 // indirect
-	github.com/gorilla/websocket v1.5.0 // indirect
 	github.com/iancoleman/strcase v0.2.0 // indirect
 	github.com/jhump/protoreflect v1.8.2 // indirect
 	github.com/json-iterator/go v1.1.12 // indirect
