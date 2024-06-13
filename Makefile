@@ -4,7 +4,6 @@ build: set-env
 
 package-bin:
 	mkdir -p $(OUTDIR)
-	cp -r $(HOMEDIR)/package/* $(OUTDIR)
 
 include Makefile.mk
 Makefile.mk:
