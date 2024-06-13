@@ -3,6 +3,7 @@ package main
 import (
 	"context"
 	"flag"
+	"fmt"
 	"log"
 
 	"github.com/cloudwego/kitex-examples/hello/kitex_gen/api"
@@ -12,7 +13,7 @@ import (
 )
 
 var (
-	qps = flag.Int("qps", 100, "qps")
+	qps = flag.Int("qps", 5000, "qps")
 )
 
 func main() {
@@ -22,9 +23,11 @@ func main() {
 		log.Fatal(err)
 	}
 	rl := ratelimit.New(*qps)
-	req := &api.Request{Message: "my request"}
+	count := 0
 	for {
 		rl.Take()
+		req := &api.Request{Message: fmt.Sprintf("%d", count)}
+		count += 1
 		resp, err := client.Echo(context.Background(), req)
 		if err != nil {
 			log.Fatal(err)
