@@ -15,6 +15,7 @@ var (
 )
 
 func main() {
+	flag.Parse()
 	addr, _ := net.ResolveTCPAddr("tcp", fmt.Sprintf(":%d", *port))
 	svr := api.NewServer(new(HelloImpl), server.WithServiceAddr(addr))
 
