@@ -21,9 +21,9 @@ https://github.com/buger/goreplay/wiki/%5BPRO%5D-Replaying-Binary-protocols
 https://github.com/buger/goreplay/wiki/Compilation
 
 ```bash
-./server --port 8888
-./server --port 9999
-./gor --input-raw :8888 --input-raw-protocol binary --output-binary :9999
+./server --port 8888 &
+./server --port 9999 &
+./gor --input-raw :8888 --input-raw-protocol binary --output-binary :9999 &
 ./client --qps 5000
 ```
 

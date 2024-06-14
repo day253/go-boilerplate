@@ -13,12 +13,13 @@ import (
 )
 
 var (
-	qps = flag.Int("qps", 50000, "qps")
+	qps  = flag.Int("qps", 50000, "qps")
+	port = flag.Int("port", 8888, "port")
 )
 
 func main() {
 	flag.Parse()
-	client, err := hello.NewClient("hello", client.WithHostPorts("0.0.0.0:8888"))
+	client, err := hello.NewClient("hello", client.WithHostPorts(fmt.Sprintf(":%d", *port)))
 	if err != nil {
 		log.Fatal(err)
 	}
